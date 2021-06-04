@@ -10,8 +10,17 @@ const StyledHomeView = styled.div`
   justify-content: center;
   align-items: center;
 
-  .HomeView__title {
+  .HomeView__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     margin: 64px;
+  }
+
+  .HomeView__header_title {
+    margin-block: 8px;
 
     font-weight: bold;
   }

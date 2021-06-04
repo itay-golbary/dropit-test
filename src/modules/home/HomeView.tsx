@@ -1,10 +1,17 @@
 import React, { FC } from "react";
 import { StyledHomeView } from "./styles";
+import { Link } from "@material-ui/core";
 
 const HomeView: FC = () => {
   return (
     <StyledHomeView>
-      <div className="HomeView__title">Welcome To Dropit (by Itay Golbary)</div>
+      <div className="HomeView__header">
+        <div className="HomeView__header_title">
+          Welcome To Dropit (by Itay Golbary)
+        </div>
+
+        <Link href="/catalog">Continue to Catalog</Link>
+      </div>
 
       <div className="HomeView__content">
         <div className="HomeView__content_github">
