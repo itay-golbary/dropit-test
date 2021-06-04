@@ -10,14 +10,12 @@ interface Props {}
 
 const Navigator: FC<Props> = () => (
   <Router>
-    <div>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/catalog" component={Catalog} />
-        <Route exact path="/cart" component={Cart} />
-        <Route path="/products/:id" component={Product} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/catalog" component={Catalog} />
+      <Route exact path="/cart" component={Cart} />
+      <Route path="/products/:id" component={Product} />
+    </Switch>
   </Router>
 );
 

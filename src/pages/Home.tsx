@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 
+import { HomeView } from "../modules/home";
+
 const Home: FC = () => {
-  return <div>Home</div>;
+  return <HomeView />;
 };
 
 export default Home;
