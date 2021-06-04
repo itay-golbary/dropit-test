@@ -23,6 +23,7 @@ const getColumns: GetColumns = ({ handleAddProductToCart }) =>
       renderCell: function Image(params) {
         return (
           <img
+            alt=""
             src={params.value as string}
             className="CatalogView__grid_productImage"
           />
