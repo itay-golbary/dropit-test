@@ -4,6 +4,8 @@ import { useCatalog } from "./useCatalog";
 import { DataGrid, GridCellParams, GridColDef } from "@material-ui/data-grid";
 import { StyledCatalogView } from "./styles";
 import { Tooltip } from "../../components";
+import { CartIcon } from "../../icons";
+import { Link } from "@material-ui/core";
 
 const columns: GridColDef[] = [
   {
@@ -49,6 +51,14 @@ const CatalogView: FC = () => {
 
   return (
     <StyledCatalogView>
+      <div className="CatalogView__header">
+        <div className="CatalogView__header_text">Catalog Page</div>
+
+        <Link href="/cart" className="CatalogView__header_icon">
+          <CartIcon />
+        </Link>
+      </div>
+
       <div className="CatalogView__grid">
         <DataGrid
           rows={products}
