@@ -4,13 +4,13 @@ import { Provider } from "react-redux";
 
 import "./index.css";
 
-import App from "./App";
 import { store } from "./redux";
+import { Navigator } from "./navigation";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Navigator />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
