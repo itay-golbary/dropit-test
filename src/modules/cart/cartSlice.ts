@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState, Thunk } from "../../redux/types";
 import { Cart } from "./types";
@@ -22,7 +22,25 @@ const addProductToCart =
   async (dispatch, getState) => {
     const { cart } = getState();
 
-    const newCart = [...cart, { product, count: 1 }];
+    const isExists = cart
+      .reduce<number[]>((acc, current) => {
+        acc.push(current.product.id);
+
+        return acc;
+      }, [])
+      .includes(product.id);
+
+    const newCart = isExists
+      ? cart.reduce<Cart>((acc, current) => {
+          if (current.product.id === product.id) {
+            acc.push({ ...current, count: current.count + 1 });
+          } else {
+            acc.push(current);
+          }
+
+          return acc;
+        }, [])
+      : [...cart, { product, count: 1 }];
 
     dispatch(setCart(newCart));
   };

@@ -3,11 +3,13 @@ import { Link } from "@material-ui/core";
 
 import { useCatalog } from "./useCatalog";
 import { StyledCatalogView } from "./styles";
-import { Tooltip, DataGrid, LoadingSpinner } from "../../components";
+import { Tooltip, DataGrid, LoadingSpinner, Badge } from "../../components";
 import { AddToCartIcon, CartIcon } from "../../icons";
 import { Product } from "../product/types";
 import { DataGridColumns } from "../../components/DataGrid/types";
 import { Selector } from "../../components/Selector";
+import { useSelector } from "react-redux";
+import { getCartState } from "../cart/cartSlice";
 
 type GetColumns = (params: {
   handleAddProductToCart: (product: Product) => void;
@@ -77,6 +79,7 @@ const CatalogView: FC = () => {
     products,
     categories,
     selectedCategory,
+    cartItemCount,
     handleAddProductToCart,
     handleSelectCategory,
   } = useCatalog();
@@ -88,7 +91,9 @@ const CatalogView: FC = () => {
 
         <Link href="/cart" className="CatalogView__header_icon">
           <Tooltip title={"Go to Cart"}>
-            <CartIcon />
+            <Badge value={cartItemCount}>
+              <CartIcon />
+            </Badge>
           </Tooltip>
         </Link>
       </div>
