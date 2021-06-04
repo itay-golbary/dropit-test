@@ -13,10 +13,17 @@ const API = {
       ),
     getAll: async (): Promise<Product[]> =>
       AxiosClient.get<Product[]>(`/products`).then((response) => response.data),
+    getByCategory: async (category: string): Promise<Product[]> =>
+      AxiosClient.get<Product[]>(`/products/category/${category}`).then(
+        (response) => response.data
+      ),
   },
-  // category: {
-  //   getAll: () => {},
-  // },
+  category: {
+    getAll: async (): Promise<string[]> =>
+      AxiosClient.get<string[]>(`/products/categories`).then(
+        (response) => response.data
+      ),
+  },
 };
 
 export { API };

@@ -3,10 +3,11 @@ import { Link } from "@material-ui/core";
 
 import { useCatalog } from "./useCatalog";
 import { StyledCatalogView } from "./styles";
-import { Tooltip, DataGrid } from "../../components";
+import { Tooltip, DataGrid, LoadingSpinner } from "../../components";
 import { AddToCartIcon, CartIcon } from "../../icons";
 import { Product } from "../product/types";
 import { DataGridColumns } from "../../components/DataGrid/types";
+import { Selector } from "../../components/Selector";
 
 type GetColumns = (params: {
   handleAddProductToCart: (product: Product) => void;
@@ -71,7 +72,14 @@ const getColumns: GetColumns = ({ handleAddProductToCart }) =>
   ] as DataGridColumns;
 
 const CatalogView: FC = () => {
-  const { products, handleAddProductToCart } = useCatalog();
+  const {
+    isLoading,
+    products,
+    categories,
+    selectedCategory,
+    handleAddProductToCart,
+    handleSelectCategory,
+  } = useCatalog();
 
   return (
     <StyledCatalogView>
@@ -85,12 +93,23 @@ const CatalogView: FC = () => {
         </Link>
       </div>
 
+      <div className="CatalogView__filter">
+        <Selector
+          label={"Select Category"}
+          value={selectedCategory}
+          options={categories}
+          onChange={handleSelectCategory}
+        />
+      </div>
+
       <div className="CatalogView__grid">
         <DataGrid
           rows={products as []}
           columns={getColumns({ handleAddProductToCart })}
         />
       </div>
+
+      <LoadingSpinner isVisible={isLoading} />
     </StyledCatalogView>
   );
 };

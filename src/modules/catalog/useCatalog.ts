@@ -7,11 +7,33 @@ import { addProductToCart } from "../cart/cartSlice";
 const useCatalog = () => {
   const dispatch = useDispatch();
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<Product[]>([]);
 
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [categories, setCategories] = useState<string[]>([]);
+
   useEffect(() => {
-    API.product.getAll().then(setProducts);
+    API.category.getAll().then(setCategories);
   }, []);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      API.product
+        .getByCategory(selectedCategory)
+        .then(setProducts)
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      API.product
+        .getAll()
+        .then(setProducts)
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [selectedCategory]);
 
   const handleAddProductToCart = useCallback(
     (product: Product) => {
@@ -20,7 +42,24 @@ const useCatalog = () => {
     [dispatch]
   );
 
-  return { products, handleAddProductToCart };
+  const handleSelectCategory = useCallback((category: string) => {
+    setIsLoading(true);
+
+    setSelectedCategory(category);
+  }, []);
+
+  useEffect(() => {
+    console.log("isLoading", isLoading);
+  }, [isLoading]);
+
+  return {
+    isLoading,
+    products,
+    categories,
+    selectedCategory,
+    handleAddProductToCart,
+    handleSelectCategory,
+  };
 };
 
 export { useCatalog };

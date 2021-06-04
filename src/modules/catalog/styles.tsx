@@ -19,6 +19,13 @@ const StyledCatalogView = styled.div`
     }
   }
 
+  .CatalogView__filter {
+    width: 200px;
+
+    margin: 8px;
+    padding: 8px;
+  }
+
   .CatalogView__grid {
     height: 720px;
     width: 100%;
