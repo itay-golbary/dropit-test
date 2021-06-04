@@ -33,6 +33,7 @@ const Selector: FC<Props> = ({ value, label, options, onChange }) => {
           label={label}
           onChange={handleChange}
         >
+          <MenuItem value={""}>{"Clear Selection"}</MenuItem>
           {options.map((category) => (
             <MenuItem key={category} value={category}>
               {category}
