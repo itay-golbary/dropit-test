@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const StyledCatalogView = styled.div`
   .CatalogView__header {
-    //width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,6 +26,10 @@ const StyledCatalogView = styled.div`
     .CatalogView__grid_productImage {
       width: 60px;
       object-fit: contain;
+    }
+
+    .CatalogView__grid_addToCart {
+      cursor: pointer;
     }
   }
 `;
