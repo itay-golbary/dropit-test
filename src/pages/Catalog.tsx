@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 
+import { CatalogView } from "../modules/catalog";
+
 const Catalog: FC = () => {
-  return <div>Catalog</div>;
+  return <CatalogView />;
 };
 
 export default Catalog;
