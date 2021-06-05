@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { StyledHomeView } from "./styles";
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const HomeView: FC = () => {
   return (
@@ -10,7 +10,7 @@ const HomeView: FC = () => {
           Welcome To Dropit (by Itay Golbary)
         </div>
 
-        <Link href="/catalog">Continue to Catalog</Link>
+        <Link to="/catalog">Continue to Catalog</Link>
       </div>
 
       <div className="HomeView__content">

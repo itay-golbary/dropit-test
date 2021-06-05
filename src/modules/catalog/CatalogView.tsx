@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import { useCatalog } from "./useCatalog";
 import { StyledCatalogView } from "./styles";
@@ -87,7 +87,7 @@ const CatalogView: FC = () => {
       <div className="CatalogView__header">
         <div className="CatalogView__header_text">Catalog Page</div>
 
-        <Link href="/cart" className="CatalogView__header_icon">
+        <Link to="/cart" className="CatalogView__header_icon">
           <Tooltip title={"Go to Cart"}>
             <Badge value={cartItemCount}>
               <CartIcon />
