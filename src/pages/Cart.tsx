@@ -1,7 +1,8 @@
 import React, { FC } from "react";
+import { CartView } from "../modules/cart";
 
 const Cart: FC = () => {
-  return <div>Cart</div>;
+  return <CartView />;
 };
 
 export default Cart;

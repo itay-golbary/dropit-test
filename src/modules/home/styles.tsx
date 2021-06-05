@@ -17,12 +17,12 @@ const StyledHomeView = styled.div`
     align-items: center;
 
     margin: 64px;
-  }
-
-  .HomeView__header_title {
-    margin-block: 8px;
 
     font-weight: bold;
+
+    .HomeView__header_title {
+      margin-block: 8px;
+    }
   }
 
   .HomeView__content {

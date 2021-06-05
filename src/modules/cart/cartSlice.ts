@@ -45,82 +45,86 @@ const addProductToCart =
     dispatch(setCart(newCart));
   };
 
-const removeProductFromCart =
-  (product: Product): Thunk<void> =>
-  async (dispatch, getState) => {
-    const { cart } = getState();
+// const removeProductFromCart =
+//   (product: Product): Thunk<void> =>
+//   async (dispatch, getState) => {
+//     const { cart } = getState();
+//
+//     const newCart = cart.reduce<Cart>((acc, current) => {
+//       if (current.product.id !== product.id) {
+//         acc.push(current);
+//       }
+//
+//       return acc;
+//     }, []);
+//
+//     dispatch(setCart(newCart));
+//   };
+//
+// const incrementProductCount =
+//   (product: Product): Thunk<void> =>
+//   async (dispatch, getState) => {
+//     const { cart } = getState();
+//
+//     const newCart = cart.reduce<Cart>((acc, current) => {
+//       if (current.product.id === product.id) {
+//         acc.push({ ...current, count: current.count + 1 });
+//       } else {
+//         acc.push(current);
+//       }
+//
+//       return acc;
+//     }, []);
+//
+//     dispatch(setCart(newCart));
+//   };
+//
+// const decrementProductCount =
+//   (product: Product): Thunk<void> =>
+//   async (dispatch, getState) => {
+//     const { cart } = getState();
+//
+//     const newCart = cart.reduce<Cart>((acc, current) => {
+//       if (current.product.id === product.id) {
+//         if (current.count !== 1) {
+//           acc.push({ ...current, count: current.count - 1 });
+//         }
+//       } else {
+//         acc.push(current);
+//       }
+//
+//       return acc;
+//     }, []);
+//
+//     dispatch(setCart(newCart));
+//   };
+//
+// type UpdateProductCount = {
+//   product: Product;
+//   value: number;
+// };
+//
+// const updateProductCount =
+//   ({ product, value }: UpdateProductCount): Thunk<void> =>
+//   async (dispatch, getState) => {
+//     const { cart } = getState();
+//
+//     const newCart = cart.reduce<Cart>((acc, current) => {
+//       if (current.product.id === product.id) {
+//         acc.push({ ...current, count: value });
+//       } else {
+//         acc.push(current);
+//       }
+//
+//       return acc;
+//     }, []);
+//
+//     dispatch(setCart(newCart));
+//   };
 
-    const newCart = cart.reduce<Cart>((acc, current) => {
-      if (current.product.id !== product.id) {
-        acc.push(current);
-      }
-
-      return acc;
-    }, []);
-
-    dispatch(setCart(newCart));
-  };
-
-const incrementProductCount =
-  (product: Product): Thunk<void> =>
-  async (dispatch, getState) => {
-    const { cart } = getState();
-
-    const newCart = cart.reduce<Cart>((acc, current) => {
-      if (current.product.id === product.id) {
-        acc.push({ ...current, count: current.count + 1 });
-      } else {
-        acc.push(current);
-      }
-
-      return acc;
-    }, []);
-
-    dispatch(setCart(newCart));
-  };
-
-const decrementProductCount =
-  (product: Product): Thunk<void> =>
-  async (dispatch, getState) => {
-    const { cart } = getState();
-
-    const newCart = cart.reduce<Cart>((acc, current) => {
-      if (current.product.id === product.id) {
-        if (current.count !== 1) {
-          acc.push({ ...current, count: current.count - 1 });
-        }
-      } else {
-        acc.push(current);
-      }
-
-      return acc;
-    }, []);
-
-    dispatch(setCart(newCart));
-  };
-
-type UpdateProductCount = {
-  product: Product;
-  value: number;
+const resetCartState = (): Thunk<void> => async (dispatch) => {
+  dispatch(setCart([]));
 };
-
-const updateProductCount =
-  ({ product, value }: UpdateProductCount): Thunk<void> =>
-  async (dispatch, getState) => {
-    const { cart } = getState();
-
-    const newCart = cart.reduce<Cart>((acc, current) => {
-      if (current.product.id === product.id) {
-        acc.push({ ...current, count: value });
-      } else {
-        acc.push(current);
-      }
-
-      return acc;
-    }, []);
-
-    dispatch(setCart(newCart));
-  };
 
 const getCartState =
   () =>
@@ -130,9 +134,10 @@ const getCartState =
 export {
   cartReducer,
   addProductToCart,
-  removeProductFromCart,
-  incrementProductCount,
-  decrementProductCount,
-  updateProductCount,
+  // removeProductFromCart,
+  // incrementProductCount,
+  // decrementProductCount,
+  // updateProductCount,
   getCartState,
+  resetCartState,
 };

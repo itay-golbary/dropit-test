@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Product } from "../product/types";
 import { API } from "../../api";
-import { addProductToCart, getCartState } from "../cart/cartSlice";
+import { addProductToCart, getCartState } from "../cart";
 
 const useCatalog = () => {
   const dispatch = useDispatch();
@@ -53,10 +53,6 @@ const useCatalog = () => {
 
     setSelectedCategory(category);
   }, []);
-
-  useEffect(() => {
-    console.log("isLoading", isLoading);
-  }, [isLoading]);
 
   return {
     isLoading,
