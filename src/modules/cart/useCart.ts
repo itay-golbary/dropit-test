@@ -23,13 +23,15 @@ const useCart = () => {
   }, [dispatch]);
 
   const handleCheckout = useCallback(() => {
-    setIsLoading(true);
+    if (cartState.length) {
+      setIsLoading(true);
 
-    setTimeout(() => {
-      setCheckoutModalOpen(true);
-      setIsLoading(false);
-    }, 1000);
-  }, []);
+      setTimeout(() => {
+        setCheckoutModalOpen(true);
+        setIsLoading(false);
+      }, 1000);
+    }
+  }, [cartState.length]);
 
   const handleCloseCheckoutModal = useCallback(() => {
     setCheckoutModalOpen(false);
