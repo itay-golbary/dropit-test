@@ -3,13 +3,11 @@ import { Link } from "@material-ui/core";
 
 import { useCatalog } from "./useCatalog";
 import { StyledCatalogView } from "./styles";
-import { Tooltip, DataGrid, LoadingSpinner, Badge } from "../../components";
+import { Badge, DataGrid, LoadingSpinner, Tooltip } from "../../components";
 import { AddToCartIcon, CartIcon } from "../../icons";
 import { Product } from "../product/types";
 import { DataGridColumns } from "../../components/DataGrid/types";
 import { Selector } from "../../components/Selector";
-import { useSelector } from "react-redux";
-import { getCartState } from "../cart/cartSlice";
 
 type GetColumns = (params: {
   handleAddProductToCart: (product: Product) => void;

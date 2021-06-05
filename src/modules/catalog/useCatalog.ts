@@ -3,7 +3,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Product } from "../product/types";
 import { API } from "../../api";
 import { addProductToCart, getCartState } from "../cart/cartSlice";
-import { current } from "@reduxjs/toolkit";
 
 const useCatalog = () => {
   const dispatch = useDispatch();
