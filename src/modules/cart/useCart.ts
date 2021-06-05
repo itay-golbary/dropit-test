@@ -26,12 +26,14 @@ const useCart = () => {
     if (cartState.length) {
       setIsLoading(true);
 
+      handleResetCart();
+
       setTimeout(() => {
         setCheckoutModalOpen(true);
         setIsLoading(false);
       }, 1000);
     }
-  }, [cartState.length]);
+  }, [cartState.length, handleResetCart]);
 
   const handleCloseCheckoutModal = useCallback(() => {
     setCheckoutModalOpen(false);
