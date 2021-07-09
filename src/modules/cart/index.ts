@@ -1,11 +1,10 @@
-export { CartView } from "./CartView";
+import CartView from "./CartView";
+
 export {
   cartReducer,
   selectCartState,
-  // updateProductCount,
-  // decrementProductCount,
-  // incrementProductCount,
-  // removeProductFromCart,
   addProductToCart,
   resetCartState,
 } from "./cartSlice";
+
+export default CartView;

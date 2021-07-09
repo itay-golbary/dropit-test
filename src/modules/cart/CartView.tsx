@@ -107,4 +107,4 @@ const CartView: FC = () => {
   );
 };
 
-export { CartView };
+export default CartView;
