@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import { StyledHomeView } from "./styles";
 import { Link } from "react-router-dom";
+
+import { StyledHomeView } from "./styles";
 
 const HomeView: FC = () => {
   return (
@@ -28,4 +29,4 @@ const HomeView: FC = () => {
   );
 };
 
-export { HomeView };
+export default HomeView;

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import {
   Paper,
   Table,
@@ -8,12 +9,12 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+
+import { BackIcon } from "../../icons";
+import { LoadingSpinner, Tooltip } from "../../components";
 
 import { useCart } from "./useCart";
 import { StyledCart, StyledCartModal } from "./styles";
-import { BackIcon } from "../../icons";
-import { LoadingSpinner, Tooltip } from "../../components";
 
 const CartView: FC = () => {
   const {

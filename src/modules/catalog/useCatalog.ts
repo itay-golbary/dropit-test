@@ -1,23 +1,38 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Product } from "../product/types";
+import { useDispatch, useSelector } from "react-redux";
+
 import { API } from "../../api";
-import { addProductToCart, getCartState } from "../cart";
+import useFlag from "../../hooks/useFlag";
+import { Product } from "../product/types";
+import { addProductToCart, selectCartState } from "../cart";
 
 const useCatalog = () => {
   const dispatch = useDispatch();
 
-  const cart = useSelector(getCartState());
+  const cart = useSelector(selectCartState());
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [categories, setCategories] = useState<string[]>([]);
+  const [isLoading, onStartLoading, onEndLoading] = useFlag(true);
+
   const cartItemCount = useMemo(
     () => cart.reduce((acc, current) => acc + current.count, 0),
     [cart]
   );
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [products, setProducts] = useState<Product[]>([]);
+  const handleAddProductToCart = useCallback(
+    (product: Product) => {
+      dispatch(addProductToCart(product));
+    },
+    [dispatch]
+  );
 
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [categories, setCategories] = useState<string[]>([]);
+  const handleSelectCategory = useCallback((category: string) => {
+    onStartLoading();
+
+    setSelectedCategory(category);
+  }, []);
 
   useEffect(() => {
     API.category.getAll().then(setCategories);
@@ -28,41 +43,23 @@ const useCatalog = () => {
       API.product
         .getByCategory(selectedCategory)
         .then(setProducts)
-        .finally(() => {
-          setIsLoading(false);
-        });
+        .finally(onEndLoading);
     } else {
-      API.product
-        .getAll()
-        .then(setProducts)
-        .finally(() => {
-          setIsLoading(false);
-        });
+      API.product.getAll().then(setProducts).finally(onEndLoading);
     }
   }, [selectedCategory]);
-
-  const handleAddProductToCart = useCallback(
-    (product: Product) => {
-      dispatch(addProductToCart(product));
-    },
-    [dispatch]
-  );
-
-  const handleSelectCategory = useCallback((category: string) => {
-    setIsLoading(true);
-
-    setSelectedCategory(category);
-  }, []);
 
   return {
     isLoading,
     products,
     categories,
     selectedCategory,
+
     cartItemCount,
+
     handleAddProductToCart,
     handleSelectCategory,
   };
 };
 
-export { useCatalog };
+export default useCatalog;

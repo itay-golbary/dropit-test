@@ -1,1 +1,3 @@
-export { CatalogView } from "./CatalogView";
+import CatalogView from "./CatalogView";
+
+export default CatalogView;

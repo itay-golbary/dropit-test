@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartState, resetCartState } from "./cartSlice";
+import { selectCartState, resetCartState } from "./cartSlice";
 
 const useCart = () => {
   const dispatch = useDispatch();
-  const cartState = useSelector(getCartState());
+  const cartState = useSelector(selectCartState());
 
   const [isLoading, setIsLoading] = useState(false);
   const [isCheckoutModalOpen, setCheckoutModalOpen] = useState(false);

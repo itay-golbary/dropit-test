@@ -1,7 +1,7 @@
 export { CartView } from "./CartView";
 export {
   cartReducer,
-  getCartState,
+  selectCartState,
   // updateProductCount,
   // decrementProductCount,
   // incrementProductCount,
