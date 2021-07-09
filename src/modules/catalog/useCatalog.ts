@@ -28,26 +28,32 @@ const useCatalog = () => {
     [dispatch]
   );
 
-  const handleSelectCategory = useCallback((category: string) => {
-    onStartLoading();
+  const handleSelectCategory = useCallback(
+    (category: string) => {
+      onStartLoading();
 
-    setSelectedCategory(category);
-  }, []);
+      setSelectedCategory(category);
+    },
+    [] // eslint-disable-line
+  );
 
   useEffect(() => {
     API.category.getAll().then(setCategories);
   }, []);
 
-  useEffect(() => {
-    if (selectedCategory) {
-      API.product
-        .getByCategory(selectedCategory)
-        .then(setProducts)
-        .finally(onEndLoading);
-    } else {
-      API.product.getAll().then(setProducts).finally(onEndLoading);
-    }
-  }, [selectedCategory]);
+  useEffect(
+    () => {
+      if (selectedCategory) {
+        API.product
+          .getByCategory(selectedCategory)
+          .then(setProducts)
+          .finally(onEndLoading);
+      } else {
+        API.product.getAll().then(setProducts).finally(onEndLoading);
+      }
+    },
+    [selectedCategory] // eslint-disable-line
+  );
 
   return {
     isLoading,
