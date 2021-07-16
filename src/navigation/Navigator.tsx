@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // import Product from "../pages/Product";
 import Home from "../pages/Home";
@@ -8,12 +8,26 @@ import Cart from "../pages/Cart";
 
 interface Props {}
 
+const NavigatorAsRoute: FC = () => (
+  <div>
+    <Switch>
+      <Route exact path="/catalog">
+        <Catalog />
+      </Route>
+      <Route exact path="/catalog/cart">
+        <Cart />
+      </Route>
+    </Switch>
+  </div>
+);
+
 const Navigator: FC<Props> = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/catalog" component={Catalog} />
-      <Route exact path="/cart" component={Cart} />
+      <Route path="/catalog">
+        <NavigatorAsRoute />
+      </Route>
       {/*<Route path="/products/:id" component={Product} />*/}
     </Switch>
   </Router>

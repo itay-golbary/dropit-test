@@ -25,7 +25,7 @@ const CatalogView: FC = () => {
       <div className="CatalogView__header">
         <div className="CatalogView__header_text">Catalog Page</div>
 
-        <Link to="/cart" className="CatalogView__header_icon">
+        <Link to="/catalog/cart" className="CatalogView__header_icon">
           <Tooltip title={"Go to Cart"}>
             <Badge value={cartItemCount}>
               <CartIcon />
