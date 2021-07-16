@@ -11,7 +11,7 @@ interface Props {}
 const NavigatorAsRoute: FC = () => (
   <div>
     <Switch>
-      <Route exact path="/catalog">
+      <Route path="/catalog">
         <Catalog />
       </Route>
       <Route exact path="/catalog/cart">
@@ -24,7 +24,9 @@ const NavigatorAsRoute: FC = () => (
 const Navigator: FC<Props> = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/">
+        <Home />
+      </Route>
       <Route path="/catalog">
         <NavigatorAsRoute />
       </Route>
